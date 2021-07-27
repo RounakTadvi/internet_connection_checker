@@ -164,7 +164,7 @@ class InternetConnectionChecker {
 
   /// Initiates a request to each address in [addresses].
   /// If at least one of the addresses is reachable
-  /// we assume an internet connection is available and return `true`
+  /// we assume an internet connection is available and return
   /// [InternetConnectionStatus.connected].
   /// [InternetConnectionStatus.disconnected] otherwise.
   Future<InternetConnectionStatus> get connectionStatus async {
