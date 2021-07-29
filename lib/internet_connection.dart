@@ -76,6 +76,14 @@ class InternetConnectionChecker {
       ),
       AddressCheckOptions(
         InternetAddress(
+          '2606:4700:4700::1111', // CloudFlare
+          type: InternetAddressType.IPv6,
+        ),
+        port: DEFAULT_PORT,
+        timeout: DEFAULT_TIMEOUT,
+      ),
+      AddressCheckOptions(
+        InternetAddress(
           '8.8.4.4', // Google
           type: InternetAddressType.IPv4,
         ),
@@ -84,8 +92,24 @@ class InternetConnectionChecker {
       ),
       AddressCheckOptions(
         InternetAddress(
+          '2001:4860:4860::8888', // Google
+          type: InternetAddressType.IPv6,
+        ),
+        port: DEFAULT_PORT,
+        timeout: DEFAULT_TIMEOUT,
+      ),
+      AddressCheckOptions(
+        InternetAddress(
           '208.67.222.222', // OpenDNS
           type: InternetAddressType.IPv4,
+        ), // OpenDNS
+        port: DEFAULT_PORT,
+        timeout: DEFAULT_TIMEOUT,
+      ),
+      AddressCheckOptions(
+        InternetAddress(
+          '2620:0:ccc::2', // OpenDNS
+          type: InternetAddressType.IPv6,
         ), // OpenDNS
         port: DEFAULT_PORT,
         timeout: DEFAULT_TIMEOUT,
@@ -145,7 +169,7 @@ class InternetConnectionChecker {
     int length = addresses.length;
 
     for (AddressCheckOptions addressOptions in addresses) {
-      await isHostReachable(addressOptions).then(
+      isHostReachable(addressOptions).then(
         (AddressCheckResult request) {
           length -= 1;
           if (!result.isCompleted) {
